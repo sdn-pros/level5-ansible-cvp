@@ -1,0 +1,12 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Genaric VRF PCI configuration for the Campus switches    !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+vrf instance PCI 
+!
+ip routing vrf PCI 
+! 
+router bgp 65001
+   neighbor Firewall peer group 
+   neighbor Firewall remote-as 65004 

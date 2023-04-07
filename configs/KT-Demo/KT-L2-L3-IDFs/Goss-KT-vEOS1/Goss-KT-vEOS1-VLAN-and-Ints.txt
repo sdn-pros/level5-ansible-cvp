@@ -1,0 +1,10 @@
+vlan 100,200,250
+interface Ethernet1
+   switchport trunk allowed vlan 100,200,250
+   switchport mode trunk
+!
+interface Ethernet6
+   switchport access vlan 200
+!
+interface Ethernet7 
+   switchport access vlan 250 

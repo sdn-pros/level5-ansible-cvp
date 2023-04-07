@@ -1,0 +1,44 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! THis configlet is applied to both Campus switches and should  !
+! only be used to define vlans and virtual router addresses     !
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Define VLANS here                             !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!
+Vlan 100
+  name vlan-100
+Vlan 200
+  name vlan-200
+Vlan 250
+  name PCI-250
+!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! vARP Mac address                              !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+ip virtual-router mac-address 00:1C:73:00:00:01
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Define Virtual addresses here                           !
+!                                                         !
+! Local SVI interfaces defined in L3 Interfaces           !
+! in each switch's L3-Interfaces configlets               !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+interface VLAN 100
+  ip virtual-router address 10.0.10.1
+!
+interface VLAN 200
+  ip virtual-router address 10.0.20.1 
+!
+interface Vlan250 
+   vrf PCI 
+   ip virtual-router address 10.0.25.1 

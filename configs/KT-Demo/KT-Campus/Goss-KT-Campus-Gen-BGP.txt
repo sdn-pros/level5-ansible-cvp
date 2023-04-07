@@ -1,0 +1,21 @@
+ip routing
+!
+router BGP 65001
+  maximum-paths 4 ecmp 4
+  neighbor Core peer group
+  neighbor Core remote-as 65000
+  neighbor Core maximum-routes 12000
+  neighbor vEOS34 peer group
+  neighbor vEOS34 remote-as 65003
+  neighbor vEOS34 maximum-routes 12000
+  neighbor nxos910 peer group
+  neighbor nxos910 remote-as 65002
+  neighbor nxos910 maximum-routes 12000
+  neighbor MLAG-Peer peer group
+  neighbor MLAG-Peer remote-as 65001
+  neighbor MLAG-Peer maximum-routes 12000
+  redistribute connected
+  !
+  address-family ipv4
+    network 10.0.10.0/24
+    network 10.0.20.0/24

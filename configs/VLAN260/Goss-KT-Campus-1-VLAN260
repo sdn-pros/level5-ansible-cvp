@@ -1,0 +1,10 @@
+vlan 260 
+   name PCI-vlan2 
+!
+interface Vlan260 
+   vrf PCI 
+   ip address 10.0.26.2/24 
+   ip virtual-router address 10.0.26.1 
+!
+interface Ethernet3 
+   switchport trunk allowed vlan add 260 

@@ -1,0 +1,21 @@
+vlan 4094
+   name MLAG
+   trunk group MLAG
+!
+no spanning-tree vlan-id 4094
+!
+interface Port-Channel100
+   description mlag po to peer
+   switchport mode trunk
+   switchport trunk group MLAG
+!
+interface Ethernet1
+   description member of po100
+   switchport mode trunk
+   channel-group 100 mode active
+!
+interface Ethernet15
+   description member of po100
+   switchport mode trunk
+   channel-group 100 mode active
+!

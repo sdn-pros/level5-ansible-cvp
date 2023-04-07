@@ -1,0 +1,7 @@
+vlan 260 
+   name PCI-Vlan2
+!
+interface Vlan260 
+   vrf PCI 
+   ip address 10.0.26.3/24 
+   ip virtual-router address 10.0.26.1 

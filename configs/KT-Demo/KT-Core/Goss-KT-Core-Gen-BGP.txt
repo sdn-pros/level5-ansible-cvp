@@ -1,0 +1,16 @@
+ip routing
+!
+router BGP 65000
+  maximum-paths 4 ecmp 4
+  neighbor Campus peer group
+  neighbor Campus remote-as 65001
+  neighbor Campus maximum-routes 12000
+  neighbor MLAG-Peer peer group
+  neighbor MLAG-Peer remote-as 65000
+  neighbor MLAG-Peer maximum-routes 12000
+  neighbor Firewall peer group 
+  neighbor Firewall remote-as 65004 
+  neighbor Firewall route-map Core-Public-Filter-RM out 
+  redistribute connected
+  !
+  address-family ipv4

@@ -1,0 +1,37 @@
+interface loopback1
+  ip address 10.0.2.2/32
+!
+router BGP 65001
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!      Default VRF                            !
+!                                             !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+  router 10.0.2.2
+  neighbor 10.0.1.5 peer group Core
+  neighbor 10.0.1.5 description Core1-PO3
+  neighbor 10.0.1.7 peer group Core
+  neighbor 10.0.1.7 description Core2-PO2
+  neighbor 10.0.1.11 peer group nxos910 
+  neighbor 10.0.1.11 description nxos10-eth1/1 
+  neighbor 10.0.1.15 peer group vEOS34 
+  neighbor 10.0.1.15 description vEOS4-eth1 
+  neighbor 172.16.255.1 peer group MLAG-Peer
+  neighbor 172.16.255.1 description Campus1-vlan4094
+  !
+  address-family ipv4
+    network 10.0.2.2/32
+  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   PCI VRF                                      !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !
+   vrf PCI 
+      router-id 10.0.1.24 
+      neighbor 10.0.1.25 remote-as 65004 
+      neighbor 10.0.1.25 local-as 65005 no-prepend replace-as 
+      neighbor 10.0.1.25 description FI firewall2-eth2 
+      neighbor 10.0.25.2 remote-as 65005 
+      neighbor 10.0.25.2 local-as 65005 no-prepend replace-as 
+      redistribute connected 

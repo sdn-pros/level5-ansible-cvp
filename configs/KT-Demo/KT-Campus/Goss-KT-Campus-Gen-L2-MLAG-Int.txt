@@ -1,0 +1,37 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Only Configur MLAG Interfaces for Campus SWT    !
+!                                                 !
+! This configlet is applied to both Campus1 & 2.  !
+! Any configuration is added to Both switches     !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! PO 102 to NXOS1 Po 102               !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+Interface PO 102
+   description PO to NXOS1-PO102
+   switchport mode trunk
+   mlag 102
+   switchport trunk allowed vlan 100,200
+! 
+interface ethernet2
+   description Mem of PO102 - NXOS-Eth1/1
+   channel-group 102 mode active
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! PO 105 to vEOS2 Po 105               !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+Interface PO 105
+   description PO to vEOS1-PO105
+   switchport mode trunk
+   mlag 105
+   switchport trunk allowed vlan 100,200
+! 
+interface ethernet5
+   description Mem of PO105 - vEOS-Eth1
+   channel-group 105 mode active
+   

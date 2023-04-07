@@ -1,0 +1,76 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! PO to Core1-PO3                            !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+interface Port-Channel3
+   description PO to Core1-PO3
+   no switchport
+   ip address 10.0.1.4/31
+!
+interface Ethernet11
+   description Mem of PO3 - Core1-Eth5
+   channel-group 3 mode active
+!
+interface Ethernet13
+   description Mem of PO3 - Core1-Eth3
+   channel-group 3 mode active
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! PO to Core2-PO2                            !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+interface Port-Channel2
+   description PO to Core2-PO2
+   no switchport
+   ip address 10.0.1.6/31
+!
+interface Ethernet12
+   description Mem of PO2 - Core2-Eth4
+   channel-group 2 mode active
+!
+interface Ethernet14
+   description Mem of PO3 - Core2-Eth3
+   channel-group 2 mode active
+!
+!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Other L3 Interfaces                        !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+interface Ethernet4
+  description NXOS10-Eth1/1
+  no switchport
+  ip address 10.0.1.10/31
+!
+interface Ethernet6
+  description vEOS4-Eth1
+  no switchport
+  ip address 10.0.1.14/31
+!
+interface Ethernet7
+  description Firewall2-Eth1 
+  no switchport 
+  vrf PCI 
+  ip address 10.0.1.24/31 
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! SVI Interfaces                                  !
+!                                                 !
+! Configure vARP and VLANs for Campus switches in !
+! Goss-KT-Campus-Gen-vARP-VLAN configlet          !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+interface vlan 100
+  ip address 10.0.10.3/24
+!
+interface vlan 200
+  ip address 10.0.20.3/24
+!
+interface Vlan250 
+   vrf PCI 
+   ip address 10.0.25.3/24 

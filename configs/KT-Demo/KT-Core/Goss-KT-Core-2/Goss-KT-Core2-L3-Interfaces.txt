@@ -1,0 +1,39 @@
+interface Port-Channel3
+   description PO to Campus1-PO3
+   no switchport
+   ip address 10.0.1.3/31
+!
+interface Ethernet2
+   description Mem of PO2 - Campus1-Eth14
+   switchport mode trunk
+   channel-group 3 mode active
+!
+interface Ethernet4
+   description Mem of PO2 - Campus1-Eth12
+   switchport mode trunk
+   channel-group 3 mode active
+!
+interface Port-Channel2
+   description PO to Campus2-PO2
+   no switchport
+   ip address 10.0.1.7/31
+!
+interface Ethernet3
+   description Mem of PO3 - Campus2-Eth14
+   switchport mode trunk
+   channel-group 2 mode active
+!
+interface Ethernet5
+   description Mem of PO3 - Campus2-Eth12
+   switchport mode trunk
+   channel-group 2 mode active
+!
+interface Ethernet6
+  description ISP2
+  no switchport
+  ip address 172.16.0.3/31
+!
+interface Ethernet7 
+  description Firewall2-Eth2 
+  no switchport 
+  ip address 10.0.1.20/31 

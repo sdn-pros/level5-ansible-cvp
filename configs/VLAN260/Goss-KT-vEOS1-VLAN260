@@ -1,0 +1,9 @@
+vlan 260 
+   name PCI-vlan2
+!
+ interface Ethernet1 
+   switchport trunk allowed vlan add 260 
+   switchport mode trunk 
+! 
+interface Ethernet2 
+   switchport access vlan 260

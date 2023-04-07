@@ -1,0 +1,20 @@
+daemon TerminAttr
+   exec /usr/bin/TerminAttr -cvaddr=apiserver.cv-staging.corp.arista.io:443 -cvcompression=gzip -cvvrf=mgmt -taillogs -cvauth=token-secure,/tmp/cv-onboarding-token -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -ingestexclude=/Sysdb/cell/1/agent,/Sysdb/cell/2/agent 
+   no shutdown 
+!
+hostname Goss-KT-Core-1
+!
+ip name-server vrf default 8.8.8.8
+ip name-server vrf mgmt 8.8.8.8 
+!
+vrf instance mgmt 
+!
+interface Management1 
+   description Mgmt interface 
+   vrf mgmt 
+   ip address 192.168.66.134/24 
+!
+ip route vrf mgmt 0.0.0.0/0 192.168.66.1 
+!
+ip routing
+ip routing vrf mgmt

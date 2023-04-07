@@ -1,0 +1,36 @@
+vlan 400
+vlan 4094
+   name MLAG
+   trunk group MLAG
+interface Port-Channel100
+   description mlag po to peer
+   switchport mode trunk
+   switchport trunk group MLAG
+interface Ethernet1
+   no switchport
+   ip address 10.0.1.13/31
+interface Ethernet2
+   switchport access vlan 400
+interface Ethernet6
+   switchport access vlan 400
+interface Ethernet8
+   description member of po100
+   switchport mode trunk
+   channel-group 100 mode active
+interface Vlan400
+   ip address 10.0.40.2/24
+   ip virtual-router address 10.0.40.1
+interface Vlan4094
+   ip address 172.16.255.1/30
+ip virtual-router mac-address 00:1c:73:00:00:01
+mlag configuration
+   domain-id mlag100
+   local-interface Vlan4094
+   peer-address 172.16.255.2
+   peer-link Port-Channel100
+router bgp 65003
+   router-id 10.0.1.13
+   neighbor 10.0.1.12 remote-as 65001
+   neighbor 10.0.40.3 remote-as 65003
+   network 10.0.40.0/24
+   redistribute connected

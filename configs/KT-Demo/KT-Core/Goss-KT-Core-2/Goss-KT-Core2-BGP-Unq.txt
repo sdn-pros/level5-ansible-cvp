@@ -1,0 +1,22 @@
+interface loopback1
+  ip address 10.0.2.4/32
+!
+router BGP 65000
+  maximum-paths 4 ecmp 4
+  neighbor ISP2 peer group
+  neighbor ISP2 remote-as 64998
+  neighbor ISP2 maximum-routes 12000
+  neighbor 172.16.0.2 peer group ISP2
+  neighbor 172.16.0.2 description ISP2
+  neighbor 10.0.1.2 peer group Campus
+  neighbor 10.0.1.2 description Campus1-Po3
+  neighbor 10.0.1.6 peer group Campus
+  neighbor 10.0.1.6 description Campus2-PO2
+  neighbor 172.16.255.1 peer group MLAG-Peer
+  neighbor 172.16.255.1 description CORE1-VLAN4094
+  neighbor 10.0.1.21 peer group Firewall 
+  neighbor 10.0.1.21 description Firewall2-Eth2 
+  redistribute connected
+  !
+  address-family ipv4
+    network 10.0.2.4/32

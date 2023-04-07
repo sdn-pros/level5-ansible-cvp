@@ -1,0 +1,23 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!           Route map for Core Switches                 !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   This Prefix-list and Route Map is used to        !
+!    to filter out all public IP from redistribution !
+!    to the Campus switches with the                 !
+!    exception of permitted IPs in Prefix list.      !
+!    This is applied both CORE Switches              !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ip prefix-list Core-Public-Filter-PL
+   seq 10 permit 0.0.0.0/0
+   seq 20 permit 10.0.0.0/8 le 32 
+!
+route-map Core-Public-Filter-RM permit 10
+   match ip address prefix-list Core-Public-Filter-PL
+!
+router bgp 65000
+   neighbor Campus route-map Core-Public-Filter-RM out
+   neighbor Firewall route-map Core-Public-Filter-RM out 

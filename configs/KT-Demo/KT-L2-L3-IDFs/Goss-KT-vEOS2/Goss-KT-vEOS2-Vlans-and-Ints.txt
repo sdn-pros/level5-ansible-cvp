@@ -1,0 +1,25 @@
+vlan 100,200,250
+interface Port-Channel105
+   description PO to Campus1&2 MLAG
+   switchport trunk allowed vlan 100,200,250 
+   switchport mode trunk
+!
+interface Ethernet1
+   description Mem of PO105 - Campus1 Eth 5
+   channel-group 105 mode active
+!
+interface Ethernet2
+   description Mem of PO105 - Campus2 Eth 5
+   channel-group 105 mode active
+!
+interface Ethernet6
+   switchport access vlan 100
+!
+interface Ethernet3 
+   switchport access vlan 200
+!
+interface Ethernet4 
+   switchport access vlan 100 
+! 
+interface Ethernet5 
+   switchport access vlan 200 

@@ -1,0 +1,8 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! L2 non-MLAG interfaces                     !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+interface ethernet3
+  switchport mode trunk
+  switchport trunk allowed vlan 100,200,250
+!
