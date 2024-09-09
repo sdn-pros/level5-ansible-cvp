@@ -165,7 +165,7 @@ leaf3-DC1:
       - 192.168.103.15
       - 192.168.103.17
     spine-ASN: 65100
-  MLAG: Even
+  MLAG: Odd
 leaf4-DC1:
   interfaces:
     loopback0: 
@@ -190,7 +190,7 @@ leaf4-DC1:
       - 192.168.103.21
       - 192.168.103.23
     spine-ASN: 65100
-  MLAG: Odd
+  MLAG: Even
 borderleaf1-DC1:
   interfaces:
     loopback0: 
